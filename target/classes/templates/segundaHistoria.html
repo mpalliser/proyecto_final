@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Your Website</title>
+    <title>Region code biasing (ES)</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="./js/js.js"></script>
+
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj1hROFGE-57KNz2Nf0uZPVDoJPTi6v3U&amp;callback=initMap2&amp;libraries=geometry"></script>
+
+</head>
+<body>
+
+<div id="map"></div>
+
+<div id="banner">
+    <div id="info2">
+
+        <div id="creditCard">
+            <p>Distancia: <span th:text="${carrera.distancia}"></span> km&emsp;&emsp;&emsp;&emsp;Tiempo: <span th:text="${carrera.minutos}"></span> min</p>
+        </div>
+
+        <div id="viaje">
+            <p>Origen: <span th:text="${carrera.origen}"/></p>
+            <br/>
+
+            <p>Destino: <span th:text="${carrera.destino}"/></p>
+
+            <input class="timedistance" id="start" type="text" th:field="${carrera.origen}"/>
+            <input class="timedistance" id="end" type="text" th:field="${carrera.destino}"/>
+        </div>
+
+        <div id="previstaCuenta">
+            <label id="coste" th:text="${carrera.coste}">5.21</label> <span><b>€</b></span>
+            <label id="a"></label>
+        </div>
+
+        <a th:href="@{/info}"><input type="submit" id="secondaryButtonGo"  value="Iniciar"/></a>
+        <a th:href="@{/}"><input type="submit" id="secondaryButtonBack"  value="Cancelar"/></a>
+
+    </div>
+</div>
+
+
+</body>
+
+</html>

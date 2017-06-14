@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Your Website</title>
+    <title>Region code biasing (ES)</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="./js/js.js"></script>
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj1hROFGE-57KNz2Nf0uZPVDoJPTi6v3U&amp;callback=initMap2&amp;libraries=geometry"></script>
+
+</head>
+<body>
+<div id="map"></div>
+<div id="banner">
+    <div id="info2">
+
+        <form id="contenido" class="form-horizontal" th:action="@{/sendTip}" method="post">
+
+            <div class="row">
+                <label class="control-label col-xs-5" >Propina: </label>
+
+                <select th:field="*{carrera.propina}" class="cuartaSelect col-xs-7">
+                    <option selected="selected" value="0">No Tip</option>
+                    <option class="ptalife" th:each="propina : ${propinas}" th:value="${propina}" th:text="${propina} + '€'">propinas</option>
+                </select>
+            </div>
+
+
+            <div class="row">
+                <label class="control-label col-xs-5" >Modo Pago: </label>
+
+                <select th:field="*{carrera.modoPago}" class="cuartaSelect col-xs-7">
+
+                    <option  th:each="pago : ${modosPago}" th:value="${pago}" th:text="${pago}">Credit card</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label id="cuartaCoste" >Coste Carrera: &nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${carrera.coste}"></span> € </label>
+            </div>
+
+
+            <input class="timedistance" id="start" type="text" th:field="${carrera.origen}"/>
+            <input class="timedistance" id="end" type="text" th:field="${carrera.destino}"/>
+
+            <input type="submit" class="btn btn-success btn-block" id="tipsButton" value="Siguiente"/>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
