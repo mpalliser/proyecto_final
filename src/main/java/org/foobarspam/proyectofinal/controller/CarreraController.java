@@ -111,6 +111,8 @@ public class CarreraController {
 
 		carreraService.guardarCarrera();
 
+		carreraService.getConductor().setMediaValoraciones(carreraService.valoracionMedia());
+
 		carreraService.liberarConductor();
 
 		return "redirect:/";

@@ -39,5 +39,17 @@ public class DataLoader {
 		conductorService.guardarConductor(new Conductor("David", "AB-240459", "Hummer", "./img/conductores/david.png", "./img/coches/hummer.png"));
 		conductorService.guardarConductor(new Conductor("MrMeeseeks", "AA-000000", "Magic Box", "./img/conductores/mrmeeseeks.jpg", "./img/coches/Meeseeks_box.png"));
 
+		Carrera carrera = new Carrera();
+
+		for (int i = 1; i<5; i++) {
+			carrera.setId((long) i);
+			carrera.setValoracion(4);
+			carrera.setOrigen("palma");
+			carrera.setDestino("meneco");
+			carrera.setConductor(conductorService.getConductores().findOne((long) i));
+			carreraService.setCarrera(carrera);
+			carreraService.guardarCarrera();
+		}
+
 	}
 }
