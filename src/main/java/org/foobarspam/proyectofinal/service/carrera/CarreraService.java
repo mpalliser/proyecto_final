@@ -2,10 +2,8 @@ package org.foobarspam.proyectofinal.service.carrera;
 
 import org.foobarspam.proyectofinal.model.Carrera;
 import org.foobarspam.proyectofinal.model.Conductor;
-import org.foobarspam.proyectofinal.model.Valoracion;
 import org.foobarspam.proyectofinal.repository.CarreraRepository;
 import org.foobarspam.proyectofinal.service.tarifa.TarifaService;
-import org.foobarspam.proyectofinal.service.valoracion.ValoracionService;
 
 public interface CarreraService {
 
@@ -40,8 +38,5 @@ public interface CarreraService {
 	void transformarDistancia();
 
 	void transformarTiempo();
-
-	ValoracionService getValoracionService();
-
 
 	}

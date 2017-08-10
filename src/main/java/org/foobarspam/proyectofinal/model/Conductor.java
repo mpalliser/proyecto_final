@@ -39,21 +39,18 @@ public class Conductor {
 	private String carImg;
 
 	@OneToMany
-	private List<Valoracion> valoraciones;
-
-	@OneToMany
 	private List<Carrera> carreras;
 
 	//necesario JPA
 	public Conductor() {
 	}
 
-	public Conductor(String nombre, String matricula, String modelo, String faceImg, String carImg) {
+	public Conductor(String nombre, String matricula, String modelo,
+					 String faceImg, String carImg) {
 
 		this.nombre = nombre;
 		this.matricula = matricula;
 		this.modelo = modelo;
-		this.valoraciones = new ArrayList<>();
 		this.faceImg = faceImg;
 		this.carImg = carImg;
 	}
@@ -98,14 +95,6 @@ public class Conductor {
 		this.ocupado = ocupado;
 	}
 
-	public List<Valoracion> getValoraciones() {
-		return valoraciones;
-	}
-
-	public void setValoraciones(List<Valoracion> valoraciones) {
-		this.valoraciones = valoraciones;
-	}
-
 	public List<Carrera> getCarreras() {
 		return carreras;
 	}
@@ -137,4 +126,5 @@ public class Conductor {
 	public void setCarImg(String carImg) {
 		this.carImg = carImg;
 	}
+
 }

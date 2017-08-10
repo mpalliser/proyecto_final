@@ -42,6 +42,9 @@ public class Carrera {
 	@JoinColumn(name = "CONDUCTOR_ID")
 	private Conductor conductor;
 
+	@Column(name = "VALORACION", nullable = false)
+	private double valoracion;
+
 	public Carrera() {
 	}
 
@@ -137,5 +140,13 @@ public class Carrera {
 
 	public void setDistanciaInicial(String distanciaInicial) {
 		this.distanciaInicial = distanciaInicial;
+	}
+
+	public double getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(double valoracion) {
+		this.valoracion = valoracion;
 	}
 }

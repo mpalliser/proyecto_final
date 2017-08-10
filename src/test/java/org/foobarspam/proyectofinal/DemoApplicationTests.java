@@ -1,9 +1,8 @@
 package org.foobarspam.proyectofinal;
 
-import org.foobarspam.proyectofinal.model.Valoracion;
 import org.foobarspam.proyectofinal.service.carrera.CarreraService;
 import org.foobarspam.proyectofinal.service.conductor.ConductorService;
-import org.foobarspam.proyectofinal.service.valoracion.ValoracionService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ public class DemoApplicationTests {
 	CarreraService carreraService;
 	@Autowired
 	ConductorService conductorService;
-	@Autowired
-	ValoracionService valoracionService;
 
 	@Test
 	public void primeraHistoria() {
@@ -59,6 +56,7 @@ public class DemoApplicationTests {
 		//TODO: falta controlar que pasa si no hay conductores libres
 		assertEquals(conductorService.asignarConductor().getNombre(), conductorService.getConductores().findOne(new Long(1)).getNombre());
 	}*/
+
 	@Test
 	public void terceraHistoria() {
 
@@ -66,7 +64,6 @@ public class DemoApplicationTests {
 
 		assertEquals(1, carreraService.getConductor().getId(),0);
 
-		assertEquals(5, valoracionService.findAllByConductor(carreraService.getConductor()).size());
 		assertEquals(3, carreraService.valoracionMedia(),0);
 
 		//Falta hacer que sea aleatorio y gestionar si no quedan conductores.

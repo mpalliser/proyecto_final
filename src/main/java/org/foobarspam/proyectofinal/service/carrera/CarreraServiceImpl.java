@@ -2,17 +2,15 @@ package org.foobarspam.proyectofinal.service.carrera;
 
 import org.foobarspam.proyectofinal.model.Carrera;
 import org.foobarspam.proyectofinal.model.Conductor;
-import org.foobarspam.proyectofinal.model.Valoracion;
 import org.foobarspam.proyectofinal.repository.CarreraRepository;
 import org.foobarspam.proyectofinal.service.conductor.ConductorService;
 import org.foobarspam.proyectofinal.service.conductor.ConductorServiceImpl;
 import org.foobarspam.proyectofinal.service.tarifa.TarifaService;
-import org.foobarspam.proyectofinal.service.valoracion.ValoracionService;
-import org.foobarspam.proyectofinal.service.valoracion.ValoracionServiceImpl;
 import org.foobarspam.proyectofinal.service.tarifa.TarifaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 /**
  * Created by palliser on 27/05/2017.
@@ -24,26 +22,15 @@ public class CarreraServiceImpl implements CarreraService {
 
 	private CarreraRepository carreras;
 
-	private ValoracionService valoracionService;
-
 	private Carrera carrera;
 
 	private TarifaService tarifaServiceImpl;
 
 	@Autowired
-	public CarreraServiceImpl(ConductorServiceImpl conductorService, ValoracionServiceImpl valoracionService, TarifaServiceImpl tarifaServiceImpl) {
+	public CarreraServiceImpl(ConductorServiceImpl conductorService, TarifaServiceImpl tarifaServiceImpl) {
 
 		this.conductorService = conductorService;
-		this.valoracionService = valoracionService;
 		this.tarifaServiceImpl = tarifaServiceImpl;
-	}
-
-	public ValoracionService getValoracionService() {
-		return valoracionService;
-	}
-
-	public void setValoracionService(ValoracionService valoracionService) {
-		this.valoracionService = valoracionService;
 	}
 
 	public CarreraRepository getCarreras() {
@@ -114,14 +101,16 @@ public class CarreraServiceImpl implements CarreraService {
 
 		double valoracionMedia = 0.0d;
 
-		for (Valoracion valoracion : valoracionService.getValoraciones().findAllByConductor(this.getConductor())) {
-			valoracionMedia += valoracion.getValoracion();
+		List<Double> valoraciones = carreras.findAllValoracionesById(this.getConductor().getId());
+
+		for (double valoracion : valoraciones) {
+			valoracionMedia += valoracion;
 		}
 
-		valoracionMedia = valoracionMedia / valoracionService.getValoraciones().findAllByConductor(this.getConductor()).size();
+		valoracionMedia = valoracionMedia / valoraciones.size();
 
-		valoracionMedia = Math.round(valoracionMedia * 100);
-		valoracionMedia = valoracionMedia/100;
+//		valoracionMedia = Math.round(valoracionMedia * 100);
+//		valoracionMedia = valoracionMedia/100;
 
 		return valoracionMedia ;
 

@@ -29,7 +29,7 @@
 
         <p>Valora la atención prestada por su conductor:</p>
 
-        <select id="selectValoraciones" th:field="*{valoracion.valoracion}">
+        <select id="selectValoraciones" th:field="*{carrera.valoracion}">
 
             <option class="ptalife" th:each="valoracion : ${valoraciones}" th:value="${valoracion}" th:text="${valoracion}"></option>
         </select>

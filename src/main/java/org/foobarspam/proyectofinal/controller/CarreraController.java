@@ -1,7 +1,6 @@
 package org.foobarspam.proyectofinal.controller;
 
 import org.foobarspam.proyectofinal.model.Carrera;
-import org.foobarspam.proyectofinal.model.Valoracion;
 import org.foobarspam.proyectofinal.service.carrera.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,20 +96,20 @@ public class CarreraController {
 	@GetMapping("/valoraciones")
 	public String quintaPantalla(Model model){
 
+
 		model.addAttribute("carrera", carreraService.getCarrera());
 		model.addAttribute("valoraciones", valoraciones);
 		model.addAttribute("conductor", carreraService.getCarrera().getConductor());
-		model.addAttribute("valoracion", new Valoracion());
 
 		return "quintaHistoria";
 
 	}
 	@PostMapping("/setValoracion")
-	public String setValoracion(Valoracion valoracion) {
+	public String setValoracion(double valoracion) {
 
-		valoracion.setConductor(carreraService.getCarrera().getConductor());
+		carreraService.getCarrera().setValoracion(valoracion);
 
-		carreraService.getValoracionService().guardarValoracion(valoracion);
+		carreraService.guardarCarrera();
 
 		carreraService.liberarConductor();
 
